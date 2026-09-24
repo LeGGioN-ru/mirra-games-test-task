@@ -9,7 +9,7 @@ namespace ClockApp.Tests.Infrastructure
         [Test]
         public void HeaderLookupIgnoresCase()
         {
-            var response = new HttpResponse(200L, "body", new Dictionary<string, string> { { "date", "value" } });
+            var response = new HttpResponse("body", new Dictionary<string, string> { { "date", "value" } });
 
             Assert.AreEqual("value", response.GetHeader("Date"));
             Assert.AreEqual("body", response.Body);
@@ -18,7 +18,7 @@ namespace ClockApp.Tests.Infrastructure
         [Test]
         public void MissingHeadersAndBodyAreSafe()
         {
-            var response = new HttpResponse(200L, null, null);
+            var response = new HttpResponse(null, null);
 
             Assert.IsNull(response.GetHeader("Date"));
             Assert.AreEqual(string.Empty, response.Body);

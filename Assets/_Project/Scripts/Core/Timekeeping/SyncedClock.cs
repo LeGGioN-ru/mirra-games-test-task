@@ -33,10 +33,6 @@ namespace ClockApp.Core.Timekeeping
 
         public DateTime LocalNow => ToLocal(UtcNow) + _manualOffset;
 
-        public TimeSyncResult LastSync { get; private set; }
-
-        public bool IsSynchronized => LastSync != null && LastSync.IsTrusted;
-
         public bool IsManuallyAdjusted { get; private set; }
 
         private DateTime WallUtcNow => UtcDateTime.From(_wallClock.UtcNow);
@@ -52,7 +48,6 @@ namespace ClockApp.Core.Timekeeping
             var wallUtcAtAnchor = WallUtcNow.AddTicks(-ToTicks(elapsedSinceAnchor));
 
             SetAnchor(result.UtcAtAnchor, result.AnchorRealtime, wallUtcAtAnchor);
-            LastSync = result;
             ClearManualOffset();
             Adjusted?.Invoke();
         }

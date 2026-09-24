@@ -36,7 +36,7 @@ namespace ClockApp.Infrastructure.Http
                 request.timeout = _timeoutSeconds;
                 await request.SendWebRequest().WithCancellation(cancellationToken);
 
-                return new HttpResponse(request.responseCode, request.downloadHandler?.text, request.GetResponseHeaders());
+                return new HttpResponse(request.downloadHandler?.text, request.GetResponseHeaders());
             }
         }
     }

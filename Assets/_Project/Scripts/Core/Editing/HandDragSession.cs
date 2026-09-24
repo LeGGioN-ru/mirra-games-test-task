@@ -14,14 +14,11 @@ namespace ClockApp.Core.Editing
 
         public HandDragSession(ClockHand hand, TimeSpan startTimeOfDay, float startPointerAngle)
         {
-            Hand = hand;
             _minutesPerDegree = (hand == ClockHand.Hour ? MinutesPerHourHandTurn : MinutesPerMinuteHandTurn) / TimeOfDayMath.DegreesPerTurn;
             _minutes = TimeOfDayMath.Wrap(Math.Floor(startTimeOfDay.TotalMinutes), TimeOfDayMath.MinutesPerDay);
             _lastPointerAngle = startPointerAngle;
             TimeOfDay = Snap(_minutes);
         }
-
-        public ClockHand Hand { get; }
 
         public TimeSpan TimeOfDay { get; private set; }
 

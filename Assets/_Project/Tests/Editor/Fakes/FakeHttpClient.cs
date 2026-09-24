@@ -23,12 +23,12 @@ namespace ClockApp.Tests.Fakes
 
         public static FakeHttpClient WithBody(string body)
         {
-            return new FakeHttpClient(new HttpResponse(200L, body, null), null);
+            return new FakeHttpClient(new HttpResponse(body, null), null);
         }
 
         public static FakeHttpClient WithHeader(string name, string value)
         {
-            return new FakeHttpClient(new HttpResponse(200L, null, new Dictionary<string, string> { { name, value } }), null);
+            return new FakeHttpClient(new HttpResponse(null, new Dictionary<string, string> { { name, value } }), null);
         }
 
         public static FakeHttpClient WithError(Exception error)

@@ -31,7 +31,6 @@ namespace ClockApp.Tests.Timekeeping
         {
             Advance(5d);
 
-            Assert.IsFalse(_clock.IsSynchronized);
             Assert.AreEqual(s_deviceTime.AddSeconds(5d), _clock.UtcNow);
         }
 
@@ -51,7 +50,6 @@ namespace ClockApp.Tests.Timekeeping
 
             Advance(5.5d);
 
-            Assert.IsTrue(_clock.IsSynchronized);
             Assert.AreEqual(s_serverTime.AddSeconds(5.5d), _clock.UtcNow);
             Assert.AreEqual(DateTimeKind.Utc, _clock.UtcNow.Kind);
             Assert.AreEqual(1, _adjustedCount);
@@ -87,15 +85,6 @@ namespace ClockApp.Tests.Timekeeping
 
             Assert.AreEqual(new DateTime(2026, 9, 24, 12, 1, 0), clock.LocalNow);
             Assert.AreEqual(s_serverTime.AddSeconds(60d), clock.UtcNow);
-        }
-
-        [Test]
-        public void UntrustedSyncIsNotReportedAsSynchronized()
-        {
-            _clock.ApplySync(CreateSync(s_serverTime, 50d, false));
-
-            Assert.IsFalse(_clock.IsSynchronized);
-            Assert.AreEqual(s_serverTime, _clock.UtcNow);
         }
 
         [Test]
@@ -270,9 +259,9 @@ namespace ClockApp.Tests.Timekeeping
             _wallClock.Advance(seconds);
         }
 
-        private static TimeSyncResult CreateSync(DateTime utc, double anchorRealtime, bool isTrusted = true)
+        private static TimeSyncResult CreateSync(DateTime utc, double anchorRealtime)
         {
-            return new TimeSyncResult(utc, anchorRealtime, "Test", isTrusted, TimeSpan.FromMilliseconds(100d), null);
+            return new TimeSyncResult(utc, anchorRealtime, "Test", true, TimeSpan.FromMilliseconds(100d), null);
         }
     }
 }

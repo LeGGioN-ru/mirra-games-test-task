@@ -7,16 +7,13 @@ namespace ClockApp.Infrastructure.Http
     {
         private readonly Dictionary<string, string> _headers;
 
-        public HttpResponse(long statusCode, string body, IDictionary<string, string> headers)
+        public HttpResponse(string body, IDictionary<string, string> headers)
         {
-            StatusCode = statusCode;
             Body = body ?? string.Empty;
             _headers = headers == null
                 ? new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 : new Dictionary<string, string>(headers, StringComparer.OrdinalIgnoreCase);
         }
-
-        public long StatusCode { get; }
 
         public string Body { get; }
 

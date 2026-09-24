@@ -1,7 +1,6 @@
 using System;
 using ClockApp.Core.Editing;
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +16,7 @@ namespace ClockApp.Presentation.Editing
         [SerializeField, Range(0f, 1f)] private float _disabledAlpha = 0.35f;
         [SerializeField] private Button _saveButton;
         [SerializeField] private Button _cancelButton;
-        [SerializeField] private TMP_InputField _timeInput;
+        [SerializeField] private InputField _timeInput;
         [SerializeField] private Color _validTextColor = new Color32(230, 232, 239, 255);
         [SerializeField] private Color _invalidTextColor = new Color32(255, 107, 107, 255);
         [SerializeField] private float _fadeDuration = 0.2f;

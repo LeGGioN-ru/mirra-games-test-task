@@ -11,10 +11,6 @@ namespace ClockApp.Core.Timekeeping
 
         DateTime LocalNow { get; }
 
-        TimeSyncResult LastSync { get; }
-
-        bool IsSynchronized { get; }
-
         bool IsManuallyAdjusted { get; }
 
         void ApplySync(TimeSyncResult result);
