@@ -22,7 +22,7 @@ namespace ClockApp.Tests.Synchronization
         }
 
         [UnityTest]
-        public IEnumerator CompensatesHalfOfRoundTrip() => UniTask.ToCoroutine(async () =>
+        public IEnumerator AnchorsServerTimeAtResponseMoment() => UniTask.ToCoroutine(async () =>
         {
             var source = new FakeTimeSource("Primary", true, _realtimeClock, FakeTimeResponse.Success(s_serverTime, 0.4d));
             var service = CreateService(source);
@@ -34,7 +34,7 @@ namespace ClockApp.Tests.Synchronization
             Assert.IsTrue(result.IsTrusted);
             Assert.AreEqual(TimeSpan.FromSeconds(0.4d), result.RoundTrip);
             Assert.AreEqual(100.4d, result.AnchorRealtime, 1e-9d);
-            Assert.AreEqual(s_serverTime.AddSeconds(0.2d), result.UtcAtAnchor);
+            Assert.AreEqual(s_serverTime, result.UtcAtAnchor);
             Assert.AreEqual(DateTimeKind.Utc, result.UtcAtAnchor.Kind);
             Assert.IsEmpty(result.Failures);
         });
@@ -47,7 +47,7 @@ namespace ClockApp.Tests.Synchronization
 
             var result = await service.SynchronizeAsync(CancellationToken.None);
 
-            Assert.AreEqual(s_serverTime.AddSeconds(0.1d), result.UtcAtAnchor);
+            Assert.AreEqual(s_serverTime, result.UtcAtAnchor);
             Assert.AreEqual(DateTimeKind.Utc, result.UtcAtAnchor.Kind);
         });
 

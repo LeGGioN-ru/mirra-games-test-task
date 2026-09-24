@@ -38,13 +38,7 @@ namespace ClockApp.Core.Synchronization
                     var responseReceived = _realtimeClock.SecondsSinceStartup;
                     var roundTrip = TimeSpan.FromTicks(ToTicks(Math.Max(0d, responseReceived - requestStarted)));
 
-                    return new TimeSyncResult(
-                        serverUtc.AddTicks(roundTrip.Ticks / 2),
-                        responseReceived,
-                        source.Name,
-                        source.IsTrusted,
-                        roundTrip,
-                        failures);
+                    return new TimeSyncResult(serverUtc, responseReceived, source.Name, source.IsTrusted, roundTrip, failures);
                 }
                 catch (Exception exception)
                 {
