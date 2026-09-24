@@ -1,0 +1,23 @@
+{
+    "name": "ClockApp.Presentation",
+    "rootNamespace": "ClockApp.Presentation",
+    "references": [
+        "ClockApp.Core",
+        "UniTask",
+        "UniTask.DOTween",
+        "UniTask.TextMeshPro",
+        "DOTween.Modules",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
+        "Zenject"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
