@@ -12,6 +12,11 @@ namespace ClockApp.Tests.Editing
         [TestCase(" 7:30 ", 7, 30, 0)]
         [TestCase("0:00", 0, 0, 0)]
         [TestCase("12:00:07", 12, 0, 7)]
+        [TestCase("0930", 9, 30, 0)]
+        [TestCase("930", 9, 30, 0)]
+        [TestCase("2359", 23, 59, 0)]
+        [TestCase("093015", 9, 30, 15)]
+        [TestCase("93015", 9, 30, 15)]
         public void ParsesValidTime(string text, int hours, int minutes, int seconds)
         {
             var parsed = TimeInputParser.TryParse(text, out var timeOfDay);
@@ -31,6 +36,10 @@ namespace ClockApp.Tests.Editing
         [TestCase("07:30:00.5")]
         [TestCase("-1:30")]
         [TestCase("７:30")]
+        [TestCase("2400")]
+        [TestCase("1260")]
+        [TestCase("93")]
+        [TestCase("0930155")]
         [TestCase("abc")]
         [TestCase("")]
         [TestCase("   ")]

@@ -13,6 +13,8 @@ namespace ClockApp.Presentation.Editing
         [SerializeField] private CanvasGroup _editingGroup;
         [SerializeField] private Button _editButton;
         [SerializeField] private Button _resetButton;
+        [SerializeField] private CanvasGroup _resetButtonGroup;
+        [SerializeField, Range(0f, 1f)] private float _disabledAlpha = 0.35f;
         [SerializeField] private Button _saveButton;
         [SerializeField] private Button _cancelButton;
         [SerializeField] private TMP_InputField _timeInput;
@@ -54,6 +56,7 @@ namespace ClockApp.Presentation.Editing
         public void ShowViewing(bool canReset)
         {
             _resetButton.interactable = canReset;
+            _resetButtonGroup.alpha = canReset ? 1f : _disabledAlpha;
             _timeInput.DeactivateInputField();
             Fade(_editingGroup, false);
             Fade(_viewingGroup, true);
