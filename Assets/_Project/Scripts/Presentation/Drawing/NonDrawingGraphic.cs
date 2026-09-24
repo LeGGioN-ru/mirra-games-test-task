@@ -1,0 +1,22 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace ClockApp.Presentation.Drawing
+{
+    [RequireComponent(typeof(CanvasRenderer))]
+    public sealed class NonDrawingGraphic : Graphic
+    {
+        public override void SetMaterialDirty()
+        {
+        }
+
+        public override void SetVerticesDirty()
+        {
+        }
+
+        protected override void OnPopulateMesh(VertexHelper vertexHelper)
+        {
+            vertexHelper.Clear();
+        }
+    }
+}

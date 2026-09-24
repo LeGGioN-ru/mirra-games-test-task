@@ -24,5 +24,10 @@ namespace ClockApp.Presentation.Clock
             _shownWholeSecond = wholeSecond;
             _label.SetText(TimeFormat, wholeSecond / 3600, wholeSecond / 60 % 60, wholeSecond % 60);
         }
+
+        public void SetVisible(bool isVisible)
+        {
+            _label.enabled = isVisible;
+        }
     }
 }
